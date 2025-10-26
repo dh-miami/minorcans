@@ -71,6 +71,9 @@ function displayItem(record, prev_id, next_id, compound_object) {
         } else if (item.format.includes('record')) {
             itemDisplay = item === record ? '' : '<img class="w-25" src="{{ "/assets/lib/icons/" | relative_url }}{{ icons.icon-record }}.svg" alt="No preview found">';
             itemDownload = findFileLink(item) != "" ? '<a href="' + findFileLink(item) + '" target="_blank" rel="noopener" class="btn btn-outline-primary" title="Object download">Link to Object</a>' : '';
+        } else if (item.format.includes('external-link')) {
+            itemDisplay = '<iframe src="' + item.website_link + '" frameborder="0" width="100%"  height="400px"></iframe>';
+            itemDownload = '<a href="' + item.website_link + '" target="_blank" class="btn btn-outline-primary" title="' + item.title + '">Open Link</a>';
         } else {
             /* fall back to no preview if it doesn't know the format */
             itemDisplay = '<img class="w-50" src="{{ "/assets/lib/icons/" | relative_url }}{{ icons.icon-default }}.svg" alt="No preview found">';
@@ -105,7 +108,7 @@ function displayItem(record, prev_id, next_id, compound_object) {
         itemLink = '<div class="btn-group" role="group" aria-label="Item options">'
         {% if stubs contains "timeline" %}
         /* add link to view on timeline */
-        if (item.date) {
+        if (item.date && !item.website_link) {
             var itemYear;
             if (item.date.includes('-')) {
                 itemYear = item.date.split('-')[0];
@@ -193,7 +196,11 @@ function displayItem(record, prev_id, next_id, compound_object) {
             addItem(compoundItem[i]);
 
             /* create and add timeline button and map button; add item download link button*/
-            addButtons(compoundItem[i]);
+
+            //if (!compoundFormat.includes('external-link')) {
+                //addButtons(compoundItem[i]);
+            //}
+            
 
             /* define media type for stopMedia() function */
             var mediaType;
@@ -328,7 +335,12 @@ function displayItem(record, prev_id, next_id, compound_object) {
     }
 
     /* add timeline, map, and download button links */
-    addButtons(record);
+    addButtons(record);  
+   // if (item.format.includes('external-link')) {
+     //  alert("dos");
+    //}    
+                                                                                                                                                                                                                                                                                                                                                                                                                 
+    
 
     /* add content to item display area; page layout depends on item format */
     if (compound_object.length > 0 && !record.format.includes('multiple')) {
