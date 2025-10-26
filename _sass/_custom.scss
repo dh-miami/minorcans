@@ -25,7 +25,7 @@ body {
 
 
 #home-banner {
-    background-position: center center;
+    background-position: center center!important;
 }
 
 @media (min-width: 1680px) {
@@ -47,7 +47,7 @@ body p {
 }
 
 
-.about-contents p,.about-contents h2{
+.about-contents>p,.about-contents>h2{
     max-width: 1650px;
     border: none;
 }
