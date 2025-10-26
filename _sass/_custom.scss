@@ -123,3 +123,25 @@ body p{
 #search {
     margin-left: 15px:
 }
+
+#item-table {
+    font-size: 0.8em;
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #fff;
+  background-color: #01321e;
+  border-color: #01321e;
+}
+
+.btn-primary {
+    background-color: #01321e;
+    border-color: #01321e;
+}
+
+.btn-primary:hover {
+    color: #01321e;
+    background-color: #FFF;
+    border-color: #01321e;
+}
