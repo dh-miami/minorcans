@@ -69,3 +69,16 @@ body p{
 .about-contents>h2 {
     padding-top: 30px!important;
 }
+
+#browseItems .card>a {
+    background: #01321e29;
+    display: block;
+    max-height: 200px;
+    text-align: center;
+}
+#browseItems .card a img {
+        height: 100%;
+    width: auto;
+    margin: auto;
+    text-align: center;
+}
