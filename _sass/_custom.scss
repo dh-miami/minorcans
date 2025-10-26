@@ -25,5 +25,12 @@ body {
 }
 
 .bg-dark {
-    background-color: #01321e!important;
+   /* background-color: #01321e!important; */
+}
+body p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    font-size: 0.9em;
+    line-height: 1.7em;
 }
