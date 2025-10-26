@@ -23,9 +23,9 @@ body {
     background-color: #faf9f5;
 }
 
-.bg-dark {
-   background-color: #01321e;
-}
+:root {
+          --bs-dark-rgb: 1, 50, 30; /* A dark red value */
+        }
 body p {
     margin-top: 0;
     margin-bottom: 1rem;
