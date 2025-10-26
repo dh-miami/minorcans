@@ -21,3 +21,5 @@ permalink: /resources.html
     * [Baptisms, Burials and Marriages - 16th & 17th Centuries](https://www.slavesocieties.org/assets/documents/Collections/Florida/St_Augustine_1594_1644_Transcription.pdf) (Transcription by Saber Grey, University of South Florida)
     * [Baptisms - 1720-1737](https://www.slavesocieties.org/assets/documents/Collections/Florida/St_Augustine_1720_1737_Transcription.pdf) (Transcription by Erin Stone, Vanderbilt University)
     * [White Marriages - 1784-1802](https://www.slavesocieties.org/assets/documents/Collections/Florida/St_Augustine_White_Marriages_1784_1801_Transcription.pdf) (Transcription by Elvira Aballí Morell, Vanderbilt University)
+- Florida History Online, University of North Florida, <https://history.domains.unf.edu/floridahistoryonline/>
+- 
