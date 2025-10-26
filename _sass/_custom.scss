@@ -23,6 +23,18 @@ body {
     background-color: #faf9f5;
 }
 
+
+#home-banner {
+    background-position: center center;
+}
+
+@media (min-width: 1680px) {
+    #home-banner {
+        background-position: center -270px;
+    }
+}
+
+
 :root {
           --bs-dark-rgb: 1, 50, 30; /* A dark red value */
         }
