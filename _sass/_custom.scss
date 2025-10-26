@@ -47,7 +47,7 @@ body p {
 }
 
 
-.about-contents>*
- {
+.about-contents p,.about-contents h2{
     max-width: 1650px;
+    border: none;
 }
