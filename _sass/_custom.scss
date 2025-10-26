@@ -38,7 +38,7 @@ body {
 :root {
           --bs-dark-rgb: 1, 50, 30; /* A dark red value */
         }
-body p {
+body p{
     margin-top: 0;
     margin-bottom: 1rem;
     padding: 0.5rem;
@@ -46,8 +46,10 @@ body p {
     line-height: 1.7em;
 }
 
-
-.about-contents>p,.about-contents>h2{
+.about-contents ul {
+    font-size: 0.9em;
+}
+.about-contents>p,.about-contents>h2,.about-contents>ul{
     max-width: 1650px;
     border: none;
 }
