@@ -42,10 +42,8 @@ This approach is grounded in the principles of [minimal computing](https://go-dh
 
 Minimal computing also makes the project more inclusive and collaborative. Its low technical barriers make it an ideal framework for student involvement, hopefully allowing undergraduate and graduate researchers to engage with metadata creation, document encoding, and digital storytelling. As the project grows, I hope it will serve as both a research tool and a pedagogical environment, inviting new voices to participate in the recovery and interpretation of Florida’s colonial documentary history.
 
-
 ## Credits 
 
 Susanna Allés-Torrent, Associate Professor, University of Miami 
-
 
 Join the project!!! 
