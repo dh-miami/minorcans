@@ -89,14 +89,26 @@ body p{
     color: #01321e;
     border-color: #01321e;
 }
+.btn-outline-primary:hover {
+  color: #fff;
+  background-color: #01321e;
+  border-color: #01321e29;
+}
 
 #item-metadata .btn-link {
     font-weight: 400;
     color: #01321e;
     text-decoration: none;
-    border: 1px solid 1px;
+    border: 1px solid #01321e;
+}
+
+#item-metadata .btn-link:hover {
+   background-color: #01321e29;
 }
 
 #item-metadata dd {
     margin-bottom: 30px;
+}
+#item-metadata dt {
+    margin-bottom: 10px;
 }
