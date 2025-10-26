@@ -69,11 +69,14 @@ body p{
 .about-contents>h2 {
     padding-top: 30px!important;
 }
-
+#browseItems .card {
+ border-bottom-left-radius: 16px;
+ border-bottom-right-radius: 16px;
+}
 #browseItems .card>a {
     background: #01321e29;
     display: block;
-    height: 151px;
+    height: 133px;
     text-align: center;
 }
 #browseItems .card a img {
