@@ -106,7 +106,7 @@ body p{
    background-color: #01321e29;
 }
 
-#item-metadata dd {
+#item-metadata dd {>
     margin-bottom: 30px;
     font-size: 0.9em;
 }
@@ -121,7 +121,7 @@ body p{
     font-size: 1em;
 }
 #search {
-    margin-left: 15px:
+    margin-left: 15px;
 }
 
 #item-table {
