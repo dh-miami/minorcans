@@ -22,4 +22,8 @@ permalink: /resources.html
     * [Baptisms - 1720-1737](https://www.slavesocieties.org/assets/documents/Collections/Florida/St_Augustine_1720_1737_Transcription.pdf) (Transcription by Erin Stone, Vanderbilt University)
     * [White Marriages - 1784-1802](https://www.slavesocieties.org/assets/documents/Collections/Florida/St_Augustine_White_Marriages_1784_1801_Transcription.pdf) (Transcription by Elvira Aballí Morell, Vanderbilt University)
 - Florida History Online, University of North Florida, <https://history.domains.unf.edu/floridahistoryonline/>
-- 
+
+
+## Bibliography
+
+(Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
