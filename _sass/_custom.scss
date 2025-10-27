@@ -150,9 +150,12 @@ body p{
 
 #scroll-to-top {
     color: #039157;
+    bottom: 7px;
 }
 
 #scroll-to-top:hover {
     color: #012617;
 }
-
+footer .border-white {
+    border-color: #012617!important;
+}
