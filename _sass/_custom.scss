@@ -118,7 +118,7 @@ body p{
     margin: 30px auto;
 }
 .navbar-nav .nav-item a {
-    font-size: 1em;
+    font-size: 0.9em;
 }
 #search {
     margin-left: 15px;
@@ -158,4 +158,8 @@ body p{
 }
 footer .border-white {
     border-color: #012617!important;
+}
+
+#footer-nav {
+    font-size: 0.75em;
 }
