@@ -13,4 +13,5 @@ type,Type,
 format,Format,
 rights,Rights,
 rightsstatement,Rights Statement,,true
+findingaid,Finding Aid,,true
 website_link,Website,,true
