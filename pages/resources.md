@@ -29,24 +29,12 @@ permalink: /resources.html
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
 <script>
-  const userID = '1167759';
-  const collectionKey = 'CVXCKQA9';
-
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib`)
+  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=chicago-note-bibliography")
     .then(response => response.text())
     .then(data => {
-      const container = document.getElementById('zotero-bibliography');
-      container.innerHTML = data;
-
-      // Remove "Attachment" entries (exact match or starts with "Attachment:")
-      const items = container.querySelectorAll('div');
-      items.forEach(item => {
-        if (item.textContent.trim().startsWith("Attachment")) {
-          item.remove();
-        }
-      });
-    })
-    .catch(error => console.error("Failed to load Zotero bibliography:", error));
+      document.getElementById("zotero-bib").innerHTML = data;
+    });
 </script>
 
 <div id="zotero-bib">Loading bibliography...</div>
+
