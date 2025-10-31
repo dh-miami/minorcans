@@ -28,50 +28,38 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
-<div id="zotero-bibliography">Loading bibliography...</div>
-
 <script>
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json&limit=100`)
-    .then(response => response.json())
-    .then(data => {
-      // Sort alphabetically by author (last name of the first creator)
-      data.sort((a, b) => {
-        const aLast = a.data.creators?.[0]?.lastName || '';
-        const bLast = b.data.creators?.[0]?.lastName || '';
-        return aLast.localeCompare(bLast);
-      });
-
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=chicago-fullnote-bibliography`)
+    .then(response => response.text())
+    .then(text => {
       const container = document.getElementById("zotero-bibliography");
-      container.innerHTML = "";
+      const parser = new DOMParser();
+      const htmlDoc = parser.parseFromString(text, "text/html");
 
-      data.forEach(item => {
-        const d = item.data;
-        const title = d.title || "Untitled";
-        const creators = d.creators ? d.creators.map(c => `${c.lastName}, ${c.firstName}`).join("; ") : "";
-        const date = d.date || "";
-        const publisher = d.publisher || "";
-        const place = d.place || "";
-        const url = d.url ? `<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url}</a>` : "";
-
-        // Chicago-style basic format
-        const citation = `
-          <p style="margin-bottom: 1em;">
-            <strong>${creators}</strong>. <em>${title}</em>. ${place ? place + ": " : ""}${publisher}${date ? ", " + date : ""}.
-            ${url}
-          </p>
-        `;
-
-        container.innerHTML += citation;
+      // Make URLs clickable manually if they're not already
+      htmlDoc.querySelectorAll("div").forEach(entry => {
+        const rawHTML = entry.innerHTML;
+        const urlMatch = rawHTML.match(/https?:\/\/[^\s<]+/g);
+        if (urlMatch) {
+          urlMatch.forEach(url => {
+            const link = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+            entry.innerHTML = entry.innerHTML.replace(url, link);
+          });
+        }
+        container.appendChild(entry);
       });
     })
     .catch(error => {
-      console.error("Error fetching Zotero data:", error);
-      document.getElementById("zotero-bibliography").textContent = "Failed to load bibliography.";
+      console.error("Error fetching bibliography:", error);
+      document.getElementById("zotero-bibliography").innerText = "Failed to load bibliography.";
     });
 </script>
+
+<div id="zotero-bibliography">Loading bibliography...</div>
+
 
 
 
