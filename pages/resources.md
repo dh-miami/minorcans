@@ -29,7 +29,7 @@ permalink: /resources.html
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
 <script>
-  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=modern-language-association")
+  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=modern-language-association&limit=100")
     .then(response => response.text())
     .then(data => {
       document.getElementById("zotero-bib").innerHTML = data;
