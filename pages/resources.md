@@ -28,23 +28,51 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
-<div id="zotero-bibliography">Loading...</div>
+<div id="zotero-bibliography">Loading bibliography...</div>
 
 <script>
-  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items/top?format=json")
+  const userID = "1167759";
+  const collectionKey = "CVXCKQA9";
+
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
     .then(response => response.json())
     .then(data => {
+      // Sort alphabetically by author (last name of the first creator)
+      data.sort((a, b) => {
+        const aLast = a.data.creators?.[0]?.lastName || '';
+        const bLast = b.data.creators?.[0]?.lastName || '';
+        return aLast.localeCompare(bLast);
+      });
+
       const container = document.getElementById("zotero-bibliography");
-      container.innerHTML = "<h3>Fetched Items:</h3>";
+      container.innerHTML = "";
+
       data.forEach(item => {
-        container.innerHTML += `<pre>${JSON.stringify(item.data.title, null, 2)}</pre>`;
+        const d = item.data;
+        const title = d.title || "Untitled";
+        const creators = d.creators ? d.creators.map(c => `${c.lastName}, ${c.firstName}`).join("; ") : "";
+        const date = d.date || "";
+        const publisher = d.publisher || "";
+        const place = d.place || "";
+        const url = d.url ? `<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url}</a>` : "";
+
+        // Chicago-style basic format
+        const citation = `
+          <p style="margin-bottom: 1em;">
+            <strong>${creators}</strong>. <em>${title}</em>. ${place ? place + ": " : ""}${publisher}${date ? ", " + date : ""}.
+            ${url}
+          </p>
+        `;
+
+        container.innerHTML += citation;
       });
     })
     .catch(error => {
-      console.error("Fetch error:", error);
+      console.error("Error fetching Zotero data:", error);
       document.getElementById("zotero-bibliography").textContent = "Failed to load bibliography.";
     });
 </script>
+
 
 
 
