@@ -54,6 +54,7 @@ permalink: /resources.html
     .then(response => response.text())
     .then(text => {
       const container = document.getElementById("zotero-bibliography");
+       container.innerHTML = ""; // 🧹 Clear existing content before appending
       const parser = new DOMParser();
       const htmlDoc = parser.parseFromString(text, "text/html");
 
