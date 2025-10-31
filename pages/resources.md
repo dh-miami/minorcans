@@ -28,6 +28,14 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
+<style>
+  #zotero-bibliography div {
+    margin-bottom: 1em;
+    padding-left: 2em;
+    text-indent: -2em;
+  }
+</style>
+
 <script>
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
@@ -39,7 +47,6 @@ permalink: /resources.html
       const parser = new DOMParser();
       const htmlDoc = parser.parseFromString(text, "text/html");
 
-      // Make URLs clickable manually if they're not already
       htmlDoc.querySelectorAll("div").forEach(entry => {
         const rawHTML = entry.innerHTML;
         const urlMatch = rawHTML.match(/https?:\/\/[^\s<]+/g);
@@ -59,6 +66,7 @@ permalink: /resources.html
 </script>
 
 <div id="zotero-bibliography">Loading bibliography...</div>
+
 
 
 
