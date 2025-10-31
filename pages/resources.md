@@ -27,3 +27,13 @@ permalink: /resources.html
 ## Bibliography
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
+
+<script>
+  fetch("https://api.zotero.org/users/susannalles/collections/CVXCKQA9/items?format=bib&style=chicago-note-bibliography")
+    .then(response => response.text())
+    .then(data => {
+      document.getElementById("zotero-bib").innerHTML = data;
+    });
+</script>
+
+<div id="zotero-bib">Loading bibliography...</div>
