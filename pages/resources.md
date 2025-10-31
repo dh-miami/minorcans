@@ -38,11 +38,17 @@ permalink: /resources.html
     .then(response => response.text())
     .then(html => {
       const container = document.getElementById("zotero-bibliography");
-      container.innerHTML = html;
+
+      // Decode escaped HTML entities so <a> tags become real links
+      const parser = new DOMParser();
+      const decoded = parser.parseFromString(html, "text/html").body.innerHTML;
+
+      container.innerHTML = decoded;
     })
     .catch(error => {
       console.error("Error fetching Zotero bibliography:", error);
       document.getElementById("zotero-bibliography").innerHTML = "Failed to load bibliography.";
     });
 </script>
+
 
