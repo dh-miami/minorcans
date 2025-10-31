@@ -28,26 +28,18 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
-
-<div id="zotero-bibliography">Loading bibliography...</div>
-
 <script>
-  const userID = "1167759";
-  const collectionKey = "CVXCKQA9";
-
-  const container = document.getElementById("zotero-bibliography");
-  container.textContent = ""; // Clear any previous content
-
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=modern-language-association`)
+  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=modern-language-association&limit=100")
     .then(response => response.text())
-    .then(text => {
-      container.textContent = text;
-    })
-    .catch(error => {
-      console.error("Error fetching Zotero data:", error);
-      container.textContent = "Failed to load bibliography.";
+    .then(data => {
+      document.getElementById("zotero-bib").innerHTML = data;
     });
 </script>
+
+<div id="zotero-bib">Loading bibliography...</div>
+
+
+
 
 
 
