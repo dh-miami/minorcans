@@ -33,8 +33,9 @@ permalink: /resources.html
 <script>
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
+  const limit = 100;
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json&limit=${limit}`)
     .then(response => response.json())
     .then(data => {
       const items = data
@@ -70,7 +71,6 @@ permalink: /resources.html
       document.getElementById("zotero-bib").innerText = "Failed to load bibliography.";
     });
 </script>
-
 
 
 
