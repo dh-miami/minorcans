@@ -40,7 +40,7 @@ permalink: /resources.html
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=mla&limit=100`)
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=modern-language-association`)
     .then(response => response.text())
     .then(text => {
       const container = document.getElementById("zotero-bibliography");
@@ -66,7 +66,6 @@ permalink: /resources.html
 </script>
 
 <div id="zotero-bibliography">Loading bibliography...</div>
-
 
 
 
