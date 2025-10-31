@@ -36,44 +36,26 @@ permalink: /resources.html
   }
 </style>
 
+<div id="zotero-bibliography">Loading bibliography...</div>
+
 <script>
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=json`)
-    .then(response => response.json())
-    .then(jsonData => {
-      // Filter out attachments
-      const topLevelItems = jsonData.filter(item => item.data.itemType !== "attachment");
-      const itemKeys = topLevelItems.map(item => item.key);
+  const container = document.getElementById("zotero-bibliography");
+  container.textContent = ""; // Clear any previous content
 
-      // Now fetch formatted bibliography only for those keys
-      const keysParam = itemKeys.join(",");
-      return fetch(`https://api.zotero.org/users/${userID}/items?itemKey=${keysParam}&format=bib&style=modern-language-association`);
-    })
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=modern-language-association`)
     .then(response => response.text())
     .then(text => {
-      const container = document.getElementById("zotero-bibliography");
-       container.innerHTML = ""; // 🧹 Clear existing content before appending
-      const parser = new DOMParser();
-      const htmlDoc = parser.parseFromString(text, "text/html");
-
-      htmlDoc.querySelectorAll("div").forEach(entry => {
-        // Enhance links in URL field (make clickable)
-        entry.innerHTML = entry.innerHTML.replace(
-          /(https?:\/\/[^\s<]+)/g,
-          (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
-        );
-        container.appendChild(entry);
-      });
+      container.textContent = text;
     })
     .catch(error => {
-      console.error("Error fetching bibliography:", error);
-      document.getElementById("zotero-bibliography").innerText = "Failed to load bibliography.";
+      console.error("Error fetching Zotero data:", error);
+      container.textContent = "Failed to load bibliography.";
     });
 </script>
 
-<div id="zotero-bibliography">Loading bibliography...</div>
 
 
 
