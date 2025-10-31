@@ -29,12 +29,30 @@ permalink: /resources.html
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
 <script>
-  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=chicago-note-bibliography")
-    .then(response => response.text())
+  const userID = "1167759";
+  const collectionKey = "CVXCKQA9";
+
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
+    .then(response => response.json())
     .then(data => {
-      document.getElementById("zotero-bib").innerHTML = data;
+      const container = document.getElementById("zotero-bibliography");
+      data.forEach(item => {
+        const data = item.data;
+        const title = data.title || "Untitled";
+        const creators = data.creators ? data.creators.map(c => `${c.lastName}, ${c.firstName}`).join("; ") : "";
+        const date = data.date || "";
+        const url = data.url ? `<a href="${data.url}" target="_blank" rel="noopener noreferrer">View</a>` : "";
+
+        const entry = document.createElement("div");
+        entry.innerHTML = `<p><strong>${title}</strong><br>${creators} (${date}) ${url}</p>`;
+        container.appendChild(entry);
+      });
+    })
+    .catch(error => {
+      console.error("Error fetching Zotero data:", error);
     });
 </script>
 
-<div id="zotero-bib">Loading bibliography...</div>
+
+<div id="zotero-bibliography">Loading bibliography...</div>
 
