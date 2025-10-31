@@ -40,6 +40,14 @@ permalink: /resources.html
       const container = document.getElementById("zotero-bibliography");
       container.innerHTML = "";
 
+      // Sort by first author's last name
+      data.sort((a, b) => {
+        const aLast = a.data.creators && a.data.creators[0] ? a.data.creators[0].lastName.toLowerCase() : "";
+        const bLast = b.data.creators && b.data.creators[0] ? b.data.creators[0].lastName.toLowerCase() : "";
+        return aLast.localeCompare(bLast);
+      });
+
+      // Render each entry
       data.forEach(item => {
         const d = item.data;
 
@@ -50,7 +58,6 @@ permalink: /resources.html
         const date = d.date || "";
         const url = d.url ? `<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url}</a>` : "";
 
-        // Chicago-style citation (simplified)
         const citation = `<p><strong>${authors}</strong>. <em>${title}</em>. ${date}. ${url}</p>`;
 
         const entry = document.createElement("div");
@@ -64,6 +71,7 @@ permalink: /resources.html
       document.getElementById("zotero-bibliography").textContent = "Failed to load bibliography.";
     });
 </script>
+
 
 
 
