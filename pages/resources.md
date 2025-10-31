@@ -40,7 +40,7 @@ permalink: /resources.html
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=chicago-fullnote-bibliography`)
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=chicago-fullnote-bibliography&limit=100`)
     .then(response => response.text())
     .then(text => {
       const container = document.getElementById("zotero-bibliography");
