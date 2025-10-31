@@ -28,6 +28,8 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
+<div id="zotero-bibliography">Loading bibliography...</div>
+
 <script>
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
@@ -36,23 +38,44 @@ permalink: /resources.html
     .then(response => response.json())
     .then(data => {
       const container = document.getElementById("zotero-bibliography");
+      container.innerHTML = ""; // Clear loading text
+
       data.forEach(item => {
-        const data = item.data;
-        const title = data.title || "Untitled";
-        const creators = data.creators ? data.creators.map(c => `${c.lastName}, ${c.firstName}`).join("; ") : "";
-        const date = data.date || "";
-        const url = data.url ? `<a href="${data.url}" target="_blank" rel="noopener noreferrer">View</a>` : "";
+        const entryData = item.data;
+        if (!entryData.title) return; // Skip items without title (like attachments)
+
+        const title = entryData.title;
+        const creators = entryData.creators
+          ? entryData.creators.map(c => `${c.lastName || ""}, ${c.firstName || ""}`).join("; ")
+          : "";
+        const date = entryData.date || "";
+
+        // ✅ This line makes the URL clickable if it exists
+        const url = entryData.url
+          ? `<a href="${entryData.url}" target="_blank" rel="noopener noreferrer">${entryData.url}</a>`
+          : "";
 
         const entry = document.createElement("div");
-        entry.innerHTML = `<p><strong>${title}</strong><br>${creators} (${date}) ${url}</p>`;
+        entry.innerHTML = `
+          <p style="margin-bottom:1em;">
+            <strong>${title}</strong><br>
+            ${creators ? `${creators}<br>` : ""}
+            ${date ? `${date}<br>` : ""}
+            ${url}
+          </p>
+        `;
         container.appendChild(entry);
       });
+
+      if (!container.innerHTML.trim()) {
+        container.innerHTML = "<p>No items to display.</p>";
+      }
     })
     .catch(error => {
       console.error("Error fetching Zotero data:", error);
+      document.getElementById("zotero-bibliography").innerHTML = "Failed to load bibliography.";
     });
 </script>
-
 
 <div id="zotero-bibliography">Loading bibliography...</div>
 
