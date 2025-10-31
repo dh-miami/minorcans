@@ -28,13 +28,6 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
-<style>
-  #zotero-bibliography div {
-    margin-bottom: 1em;
-    padding-left: 2em;
-    text-indent: -2em;
-  }
-</style>
 
 <div id="zotero-bibliography">Loading bibliography...</div>
 
@@ -55,6 +48,7 @@ permalink: /resources.html
       container.textContent = "Failed to load bibliography.";
     });
 </script>
+
 
 
 
