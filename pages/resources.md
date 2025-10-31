@@ -34,7 +34,7 @@ permalink: /resources.html
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json&limit=100`)
     .then(response => response.json())
     .then(data => {
       // Sort alphabetically by author (last name of the first creator)
