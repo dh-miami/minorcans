@@ -34,35 +34,37 @@ permalink: /resources.html
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=bib&style=chicago-note-bibliography`)
-    .then(response => response.text())
-    .then(html => {
-      // Insert raw HTML
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(html, "text/html");
-      const entries = doc.querySelectorAll(".csl-entry");
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
+    .then(response => response.json())
+    .then(data => {
       const container = document.getElementById("zotero-bibliography");
       container.innerHTML = "";
 
-      entries.forEach(entry => {
-        let text = entry.innerHTML;
+      data.forEach(item => {
+        const d = item.data;
 
-        // Detect bare URLs and wrap them in <a> tags
-        text = text.replace(/(https?:\/\/[^\s<]+)/g, url => {
-          return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-        });
+        const title = d.title || "Untitled";
+        const authors = d.creators && d.creators.length > 0
+          ? d.creators.map(c => `${c.lastName}, ${c.firstName}`).join(", ")
+          : "Anonymous";
+        const date = d.date || "";
+        const url = d.url ? `<a href="${d.url}" target="_blank" rel="noopener noreferrer">${d.url}</a>` : "";
 
-        const div = document.createElement("div");
-        div.classList.add("csl-entry");
-        div.innerHTML = text;
-        container.appendChild(div);
+        // Chicago-style citation (simplified)
+        const citation = `<p><strong>${authors}</strong>. <em>${title}</em>. ${date}. ${url}</p>`;
+
+        const entry = document.createElement("div");
+        entry.classList.add("csl-entry");
+        entry.innerHTML = citation;
+        container.appendChild(entry);
       });
     })
     .catch(error => {
       console.error("Error fetching Zotero data:", error);
-      document.getElementById("zotero-bibliography").innerHTML = "Failed to load bibliography.";
+      document.getElementById("zotero-bibliography").textContent = "Failed to load bibliography.";
     });
 </script>
+
 
 
 
