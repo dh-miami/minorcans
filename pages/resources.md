@@ -28,15 +28,49 @@ permalink: /resources.html
 
 (Retrieved by [Zotero Collection](https://www.zotero.org/susannalles/collections/CVXCKQA9)) 
 
+<div id="zotero-bib">Loading bibliography...</div>
+
 <script>
-  fetch("https://api.zotero.org/users/1167759/collections/CVXCKQA9/items?format=bib&style=modern-language-association&limit=100")
-    .then(response => response.text())
+  const userID = "1167759";
+  const collectionKey = "CVXCKQA9";
+
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=json`)
+    .then(response => response.json())
     .then(data => {
-      document.getElementById("zotero-bib").innerHTML = data;
+      const items = data
+        .filter(item => item.data.itemType !== "attachment")
+        .sort((a, b) => {
+          const aLast = a.data.creators?.[0]?.lastName || "";
+          const bLast = b.data.creators?.[0]?.lastName || "";
+          return aLast.localeCompare(bLast);
+        });
+
+      const container = document.getElementById("zotero-bib");
+      container.innerHTML = "";
+
+      items.forEach(item => {
+        const { title, creators, date, publicationTitle, url } = item.data;
+        const authors = creators?.map(c => `${c.lastName}, ${c.firstName}`).join(", ");
+        const citation = `${authors}. <i>${title}</i>${publicationTitle ? `. ${publicationTitle}` : ""}, ${date}.`;
+
+        const div = document.createElement("div");
+        div.style.marginBottom = "1em";
+        div.style.paddingLeft = "2em";
+        div.style.textIndent = "-2em";
+
+        div.innerHTML = url
+          ? `${citation} <a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+          : citation;
+
+        container.appendChild(div);
+      });
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      document.getElementById("zotero-bib").innerText = "Failed to load bibliography.";
     });
 </script>
 
-<div id="zotero-bib">Loading bibliography...</div>
 
 
 
