@@ -40,7 +40,17 @@ permalink: /resources.html
   const userID = "1167759";
   const collectionKey = "CVXCKQA9";
 
-  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=bib&style=modern-language-association`)
+  fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items?format=json`)
+    .then(response => response.json())
+    .then(jsonData => {
+      // Filter out attachments
+      const topLevelItems = jsonData.filter(item => item.data.itemType !== "attachment");
+      const itemKeys = topLevelItems.map(item => item.key);
+
+      // Now fetch formatted bibliography only for those keys
+      const keysParam = itemKeys.join(",");
+      return fetch(`https://api.zotero.org/users/${userID}/items?itemKey=${keysParam}&format=bib&style=modern-language-association`);
+    })
     .then(response => response.text())
     .then(text => {
       const container = document.getElementById("zotero-bibliography");
@@ -48,14 +58,11 @@ permalink: /resources.html
       const htmlDoc = parser.parseFromString(text, "text/html");
 
       htmlDoc.querySelectorAll("div").forEach(entry => {
-        const rawHTML = entry.innerHTML;
-        const urlMatch = rawHTML.match(/https?:\/\/[^\s<]+/g);
-        if (urlMatch) {
-          urlMatch.forEach(url => {
-            const link = `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
-            entry.innerHTML = entry.innerHTML.replace(url, link);
-          });
-        }
+        // Enhance links in URL field (make clickable)
+        entry.innerHTML = entry.innerHTML.replace(
+          /(https?:\/\/[^\s<]+)/g,
+          (url) => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`
+        );
         container.appendChild(entry);
       });
     })
@@ -66,7 +73,6 @@ permalink: /resources.html
 </script>
 
 <div id="zotero-bibliography">Loading bibliography...</div>
-
 
 
 
