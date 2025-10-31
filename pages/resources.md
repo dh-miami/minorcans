@@ -37,18 +37,32 @@ permalink: /resources.html
   fetch(`https://api.zotero.org/users/${userID}/collections/${collectionKey}/items/top?format=bib&style=chicago-note-bibliography`)
     .then(response => response.text())
     .then(html => {
-      const container = document.getElementById("zotero-bibliography");
-
-      // Decode escaped HTML entities so <a> tags become real links
+      // Insert raw HTML
       const parser = new DOMParser();
-      const decoded = parser.parseFromString(html, "text/html").body.innerHTML;
+      const doc = parser.parseFromString(html, "text/html");
+      const entries = doc.querySelectorAll(".csl-entry");
+      const container = document.getElementById("zotero-bibliography");
+      container.innerHTML = "";
 
-      container.innerHTML = decoded;
+      entries.forEach(entry => {
+        let text = entry.innerHTML;
+
+        // Detect bare URLs and wrap them in <a> tags
+        text = text.replace(/(https?:\/\/[^\s<]+)/g, url => {
+          return `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+        });
+
+        const div = document.createElement("div");
+        div.classList.add("csl-entry");
+        div.innerHTML = text;
+        container.appendChild(div);
+      });
     })
     .catch(error => {
-      console.error("Error fetching Zotero bibliography:", error);
+      console.error("Error fetching Zotero data:", error);
       document.getElementById("zotero-bibliography").innerHTML = "Failed to load bibliography.";
     });
 </script>
+
 
 
