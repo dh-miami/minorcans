@@ -1,12 +1,12 @@
 display_name,stub,dropdown_parent
 Home,/
 Browse,,
-All items,/browse.html, Browse
+All items,/browse.html,Browse
 Subjects,/subjects.html,Browse
 Locations,/locations.html,Browse
+Metadata,/data.html,Browse
 Map,/map.html
 Timeline,/timeline.html
-Data,/data.html
 About,/about.html
 Resources,/resources.html
 
