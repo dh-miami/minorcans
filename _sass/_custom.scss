@@ -200,6 +200,19 @@ footer .border-white {
     color: #EEE;
 }
 
+#maincontent p.card-text a.btn-outline-secondary {
+  color: #6c757d;
+  border-color: #6c757d;
+    text-decoration: none;
+}
+
+
+#maincontent p.card-text a.btn-outline-secondary:hover {
+  color: #FFFFFF;
+  background: #6c757d;
+  border-color: #6c757d;
+    text-decoration: none;
+}
 
 
 
