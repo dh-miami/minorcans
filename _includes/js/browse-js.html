@@ -46,14 +46,14 @@ function makeCard(obj) {
     // top image for photos
     if(imgSrc) {
         card += '<a href="' + itemHref + '"> <img class="card-img-top lazyload" data-src="' + imgSrc + '" alt="Image of ' + obj.title + '"></a>';
+    }else{
+        card += '<p><a href="' + itemHref + '"><img class="w-50 ls-is-cached lazyloaded" data-src="/minorcans/assets/lib/icons/file-text.svg" alt="Image of Venancio Sanchez, 1809- 1899" src="/minorcans/assets/lib/icons/file-text.svg"></a></p>';
     }
     // title
     card += '<div class="card-body text-center"> <h3 class="card-title h4"><a href="' + itemHref + '" class="text-dark">' + obj.title + '</a></h3>';
     // thumb for non-photo items
     if(thumbSrc){
         card += '<p><a href="' + itemHref + '"><img class="lazyload w-50" data-src="' + thumbSrc + '" alt="Image of ' + obj.title + '"></a></p>';
-    }else{
-        card += '<p><a href="' + itemHref + '"><img class="w-50 ls-is-cached lazyloaded" data-src="/minorcans/assets/lib/icons/file-text.svg" alt="Image of Venancio Sanchez, 1809- 1899" src="/minorcans/assets/lib/icons/file-text.svg"></a></p>';
     }
     // other fields
     card += '<p class="card-text">';
