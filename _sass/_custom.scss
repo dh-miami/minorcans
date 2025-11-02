@@ -181,26 +181,23 @@ footer .border-white {
   border-radius: 5px;
 }
 
-#maincontent p a, #maincontent li a, #maincontent #zotero-bib li a {
+#maincontent p a, #maincontent li a {
     text-decoration: underline;
     color: #218a5f;
 }
 
-#maincontent p a:hover, #maincontent li a:hover, #maincontent #zotero-bib li a:hover {
+#maincontent p a:hover, #maincontent li a:hover {
     color: #024f2f;
 }
 
-#zotero-bib {
-    background: red;
-}
-#zotero-bib div {
-    background: blue;
-}
 #zotero-bib div a {
-    background: yellow;
+    text-decoration: underline;
+    color: #218a5f;
 }
 
-
+#zotero-bib div a:hover {
+    color: #024f2f;
+}
 
 #zotero-bib div a {
     text-decoration: underline;
